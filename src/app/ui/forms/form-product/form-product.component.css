@@ -1,0 +1,104 @@
+.formproduct {
+  display: grid;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.formproduct__title {
+  font-size: 1.75rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  color: #000;
+  margin-bottom: 2vh;
+}
+
+.formproduct__label{
+  padding: 2vh;
+  padding-left: 0;
+  padding-right: 0;
+}
+.formproduct__input_container{
+  position: relative;
+}
+
+.formproduct__input_container input, .formproduct button {
+  outline: none;
+  border: 1px solid #e5e7eb;
+  margin: 8px 0;
+}
+
+.formproduct__input_container input {
+  background-color: #fff;
+  padding: 1rem;
+  padding-right: 3rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  width: 300px;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.formproduct__input {
+  position: relative;
+}
+
+.formproduct__div_button{
+  display: flex;
+  justify-content: center;
+}
+
+.formproduct__button{
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  background-color: #4F46E5;
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  width: 100%;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.formproduct__signup_button{
+  cursor: pointer;
+  text-decoration: underline;
+  color: #6B7280;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.formproduct__signup_link{
+  text-align: center;
+  margin-top: 3vh;
+}
+
+.btn__disabled {
+  opacity: 0.5; /* Hace el botón más transparente */
+  pointer-events: none; /* Desactiva la interacción con el botón */
+  /* También puedes agregar estilos adicionales para indicar visualmente que está deshabilitado */
+}
+
+.form__error{
+  color: #D83A18;
+}
+
+@media(width <600px) {
+  .formregister__input_container input {
+    width: 80vw;
+  }
+}
+.formproduct__div_button{
+  margin-top: 3vh;
+}
+
+.product__response{
+  font-size: 20px;
+  color: #70d49a;
+}

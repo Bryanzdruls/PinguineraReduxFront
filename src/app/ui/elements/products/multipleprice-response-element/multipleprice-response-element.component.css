@@ -1,0 +1,9 @@
+.item__name{
+  font-size: 3vh;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.containerprice__inner{
+  margin-left: 10px;
+}

@@ -1,0 +1,19 @@
+.layout__container{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+
+  grid-area: body;
+  min-height: calc(100dvh - 183px );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.header { grid-area: header; }
+
+
+.footer { grid-area: footer; }

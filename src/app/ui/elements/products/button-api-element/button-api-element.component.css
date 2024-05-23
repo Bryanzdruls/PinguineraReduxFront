@@ -1,0 +1,23 @@
+.products__input{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+  padding: 0.5em 2em;
+  border: transparent;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+  background-color: #726ce6;
+  color: white;
+  border-radius: 4px;
+}
+
+.products__input:hover{
+  background: rgb(2,0,36);
+  cursor: pointer;
+  background: linear-gradient(90deg, rgba(30,144,255,1) 0%, rgba(0,212,255,1) 100%);
+}
+
+.btn__disabled {
+  opacity: 0.5; /* Hace el botón más transparente */
+  pointer-events: none; /* Desactiva la interacción con el botón */
+  /* También puedes agregar estilos adicionales para indicar visualmente que está deshabilitado */
+}

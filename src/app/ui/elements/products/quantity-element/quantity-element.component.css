@@ -1,0 +1,25 @@
+.product__modify_quantity{
+  display: flex;
+  align-items: center;
+  margin-top: 3vh;
+}
+
+.product__modify_quantity_element {
+  color: white;
+  z-index: 1;
+  align-self: center;
+  font-size: 2vh;
+  margin-bottom: 5px;
+}
+
+
+button{
+  font-size: 1.3rem;
+  border-radius: 5px;
+  background-color: #726ce6;
+  color: white;
+  margin: 5px;
+  padding: 5px;
+  z-index: 1;
+  cursor: pointer;
+}

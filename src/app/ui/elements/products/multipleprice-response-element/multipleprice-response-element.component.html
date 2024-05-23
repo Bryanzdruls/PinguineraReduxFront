@@ -1,0 +1,16 @@
+<section class="containerprice__inner">
+  <div>
+      <p class="item__name">Nombre: {{item.name}}</p>
+      <p>Precio base: {{item.basePrice}}</p>
+      <p>Precio final: {{item.finalPrice}}</p>
+      @if (item.productType== 'BOOK') {
+        <p>Tipo de Producto: Libro</p>
+      }@else if (item.productType== 'NOVEL') {
+        <p>Tipo de Producto: Libro</p>
+      }
+      <div>
+        <p>Descuento al por mayor: {{redondearNumero(item.discount.DiscountDetalMayor?? 0) }}</p>
+        <p>Incremento al por menor: {{redondearNumero(item.discount.IncrementDetalMayor ?? 0)}}</p>
+      </div>
+  </div>
+</section>

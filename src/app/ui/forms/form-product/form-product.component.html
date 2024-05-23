@@ -1,0 +1,30 @@
+<form  [formGroup]="applyForm" (ngSubmit)="onSubmit()" class="formproduct" >
+  <h1 class="formproduct__title">Productos</h1>
+  <select formControlName="providerId" required >
+      <option [value]="'beb6488e-c3a4-46e7-9172-1569d7196099'">Christian Libreros</option>
+  </select>
+
+  <app-field-element formControlName="title" [typeInput]="'text'" [nameField]="'title'" [formControl]="applyForm.controls.title"/>
+  <app-field-element formControlName="author" [typeInput]="'text'" [nameField]="'author'" [formControl]="applyForm.controls.author"/>
+  <app-field-element formControlName="publicationyear" [typeInput]="'number'" [nameField]="'publication Year'" [formControl]="applyForm.controls.publicationyear"/>
+  <app-field-element formControlName="price" [typeInput]="'number'" [nameField]="'Price'" [formControl]="applyForm.controls.price"/>
+
+  <label class="formproduct__label" for="type">Tipo de producto</label>
+  <select formControlName="type" required >
+    @for (option of options; track $index) {
+      <option [value]="$index">{{ option }}</option>
+    }
+  </select>
+  @if (title.valid && author.valid && publicationyear.valid && price.valid && type.valid) {
+    <div class="formproduct__div_button">
+      <input class="formproduct__button" type="submit" value="Send">
+    </div>
+  }@else {
+    <div class="formproduct__div_button">
+      <input class="formproduct__button btn__disabled" type="submit" value="Send">
+    </div>
+  }
+  @if (productResponse) {
+    <div class="product__response">El producto: {{productResponse.title}} se creo con exito</div>
+  }
+</form>

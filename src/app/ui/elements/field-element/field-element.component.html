@@ -1,0 +1,8 @@
+<div class="formlogin__input_container">
+  <input [(ngModel)]="value" (ngModelChange)="onChange($event)"
+        (blur)="onTouched()" class="formlogin__input" id="{{nameField}}"
+        type="{{typeInput}}" placeholder="Enter {{nameField}}" required>
+    @if (formControl.invalid && (formControl.dirty || formControl.touched)) {
+      <div class="form__error">{{nameField}} is Required</div>
+    }
+</div>

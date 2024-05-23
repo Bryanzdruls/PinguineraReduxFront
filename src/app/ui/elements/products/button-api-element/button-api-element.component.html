@@ -1,0 +1,6 @@
+@if (hasProductWithQuantity(products)) {
+
+  <input (click)="emit()" class="products__input" type="submit">
+}@else{
+  <input (click)="emit()" class="products__input btn__disabled" type="submit">
+}

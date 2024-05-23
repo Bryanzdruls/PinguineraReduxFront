@@ -1,0 +1,15 @@
+.nav__item {
+  cursor: pointer;
+  align-self: center;
+  border-radius: 3px;
+  padding: 10px;
+  background-color: #726ce6;
+  color: white;
+  font-size: 3vh;
+}
+@media(width <600px){
+  .nav__item {
+    font-size: 2vh;
+    padding: 5px;
+  }
+}

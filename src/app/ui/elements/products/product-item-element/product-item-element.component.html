@@ -1,0 +1,17 @@
+<div class="product__item">
+  @if (product.copytype == "NOVEL") {
+    <img src="/assets/img/novela.png" height="50" alt="imagen de novela">
+  }@else if (product.copytype == "BOOK") {
+
+    <img src="/assets/img/libro.png" height="50" alt="imagen de libro">
+  }
+  <p class="product__name">{{product.name}}</p>
+
+  <p class="product__desc">Precio base: ${{product.finalPrice}}</p>
+  @if (product.copytype == "NOVEL") {
+    <p class="product__desc">Tipo: Novela</p>
+  }@else if (product.copytype == "BOOK") {
+    <p class="product__desc">Tipo: Libro</p>
+  }
+  <app-quantity-element [product]="product" [max]="undefined"/>
+</div>

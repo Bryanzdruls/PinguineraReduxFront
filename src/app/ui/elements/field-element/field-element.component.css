@@ -1,0 +1,28 @@
+.formlogin__input_container{
+  position: relative;
+}
+
+.formlogin__input_container input, .formlogin button {
+  outline: none;
+  border: 1px solid #e5e7eb;
+  margin: 8px 0;
+}
+
+.formlogin__input_container input {
+  background-color: #fff;
+  padding: 1rem;
+  padding-right: 3rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  width: 300px;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.formlogin__input {
+  position: relative;
+}
+
+.form__error{
+  color: #D83A18;
+}
