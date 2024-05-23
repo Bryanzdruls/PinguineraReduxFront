@@ -23,7 +23,6 @@ export class GroupContainerFacade {
   groupResponse$():Observable<GroupResponse>{
     return this.store.select(selectGroupsResponse)
   }
-
   //#endregion
 
   //#region public methods

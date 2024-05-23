@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductItemElementComponent } from '../../elements/products/product-item-element/product-item-element.component';
 import { MultiplepriceResponseElementComponent } from '../../elements/products/multipleprice-response-element/multipleprice-response-element.component';
 import { ButtonApiElementComponent } from '../../elements/products/button-api-element/button-api-element.component';
@@ -13,6 +13,7 @@ import { GroupRequest, GroupResponse, ProductsIDSQuantity } from '../../../core/
   styleUrl: './groups-blocks.style.css'
 })
 export class GroupsBlocksComponent {
+
   @Input() products: ProductStoreModel[];
   @Input() groupResponse: GroupResponse;
 
@@ -59,8 +60,6 @@ export class GroupsBlocksComponent {
       generalGroup:this.agrupaciones,
       registrationDate: fechaFormateada
     }
-
-
     this.eventEmmitter.emit(groupedEmit);
   }
 

@@ -84,7 +84,7 @@ export class ApiToProductMapper {
 
   groupResponse(payload:any):GroupResponse{
     return {
-      groupResponses: payload.groupResponses,
+      generalGroup: payload.groupResponses,
       priceTotal: payload.priceTotal,
       discountMayorTotal: payload.discountMayorTotal,
       discountCustomerTotal: payload.discountCustomerTotal,

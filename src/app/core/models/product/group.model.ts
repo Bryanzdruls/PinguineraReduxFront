@@ -1,4 +1,5 @@
 import { ProductStoreModel } from "../store/products/products.storemodel";
+import { IMultiplePriceModel } from "./multiplePrice.model";
 
 export interface GroupRequest {
   providerId:       string;
@@ -7,7 +8,7 @@ export interface GroupRequest {
 }
 
 export interface GroupResponse {
-  groupResponses:        GroupResponseElement[];
+  generalGroup:        GroupResponseElement[];
   priceTotal:            number;
   discountMayorTotal:    number;
   discountCustomerTotal: number;
@@ -15,7 +16,7 @@ export interface GroupResponse {
 }
 
 export interface GroupResponseElement {
-  products:                 ProductStoreModel[];
+  copies:                 IMultiplePriceModel[];
   pricePerGroup:            number;
   discountMayorPerGroup:    number;
   discountCustomerPerGroup: number;

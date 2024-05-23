@@ -2,11 +2,24 @@
   @if (groupResponse) {
     <h1 class="containerprice__title">Calculos realizados: </h1>
     <div class="containerprice">
-      @for (item of groupResponse.groupResponses; track $index) {
-      <div class="containerprice__card">
-        <h2 class="container__index">{{$index+1}}.</h2>
-      </div>
+      @for (item of groupResponse.generalGroup; track $index) {
+        <h1>Group {{$index+1}}</h1>
+        @for (product of item.copies; track $index) {
+          <div class="containerprice__card">
+            <h2 class="container__index">{{$index+1}}</h2>
+            <app-multipleprice-response-element class="containerprice__inner" [item]="product" />
+
+          </div>
+        }
+        <h1 class="containerprice__title">Precio: {{item.pricePerGroup}} </h1>
+        <h1 class="containerprice__title">Descuento Mayor: {{item.discountMayorPerGroup}} </h1>
+        <h1 class="containerprice__title">Descuento customer: {{item.discountCustomerPerGroup}} </h1>
+        <h1 class="containerprice__title">Incremento: {{item.incrementDetalPerGroup}} </h1>
       }
+      <h1 class="containerprice__title">Precio total: {{groupResponse.priceTotal}} </h1>
+      <h1 class="containerprice__title">Descuento total Mayor: {{groupResponse.discountMayorTotal}} </h1>
+      <h1 class="containerprice__title">Descuento total customer: {{groupResponse.discountCustomerTotal}} </h1>
+      <h1 class="containerprice__title">Incremento total: {{groupResponse.incrementTotal}} </h1>
     </div>
     }
   <h3 class="groups__title">Productos Disponibles</h3>

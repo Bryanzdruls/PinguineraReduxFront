@@ -6,6 +6,7 @@ import { IProductIdAndQuantityOnlyModel } from "../../models/product/productIdQu
 import { IBudgetRequest, IBudgetResponse } from "../../models/product/productBudget.model";
 import { IProductModelResponse } from "../../models/product/product.model";
 import { GroupRequest, GroupResponse } from "../../models/product/group.model";
+import { state } from "@angular/animations";
 
 export interface ProductsState {
   providerId: string;
@@ -46,13 +47,14 @@ export const productReducer = createReducer(
           ? { ...product, stock: action.product.stock }
           : product
       )
-
     })),
 
   on(ProductActions.calculateMultiplePrice, (state,action) => ({...state,multiplePriceRequest:action.multiplePriceRequest})),
   on(ProductActions.calculateMultiplePriceSuccess, (state,action) => ({...state, multiplePriceResponse: action.products})),
 
-
   on(ProductActions.calculateBudget, (state,action) => ({...state,budgetRequest:action.budgetRequest})),
   on(ProductActions.calculateBudgetSuccess, (state,action) => ({...state,budgetResponse:action.budgetResponse})),
+
+  on(ProductActions.calculateGroup, (state, action) => ({...state})),
+  on(ProductActions.calculateGroupSuccess, (state,action) => ({...state, groupResponse:action.groupResponse}))
 )
