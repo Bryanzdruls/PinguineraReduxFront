@@ -8,6 +8,7 @@ import { ApiToProductMapper } from '../../mappers/api-to-product.mapper';
 import { IMultiplePriceModel, IProductEntityListResponseModel } from '../../models/product/multiplePrice.model';
 import { IProductIdAndQuantityOnlyModel } from '../../models/product/productIdQuantity.model';
 import { IBudgetResponse } from '../../models/product/productBudget.model';
+import { GroupResponse } from '../../models/product/group.model';
 
 
 @Injectable({
@@ -49,5 +50,12 @@ export class ProductService {
     return this.httpService
     .post<IBudgetResponse>(url,mappedPayload)
     .pipe(map((result) => this.mapper.budgetResponse(result)));
+  }
+
+  calculateGroup(payload){
+    const url = URL_RESOURCES.calculatemultiplepricegrouped;
+    return this.httpService
+    .post<GroupResponse>(url,payload.groupRequest)
+    .pipe(map((result) => this.mapper.groupResponse(result)));
   }
 }

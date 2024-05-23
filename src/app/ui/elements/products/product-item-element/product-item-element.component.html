@@ -7,7 +7,7 @@
   }
   <p class="product__name">{{product.title}}</p>
 
-  <p class="product__desc">Precio base: ${{product.finalPrice}}</p>
+  <p class="product__desc">Precio base: ${{product.finalPrice.toFixed(0)}}</p>
   @if (product.type == "NOVEL") {
     <p class="product__desc">Tipo: Novela</p>
   }@else if (product.type == "BOOK") {

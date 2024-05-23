@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AddButtonHeaderElementComponent } from '../../elements/header/add-button-header-element/add-button-header-element.component';
 import { CalculateButtonElementComponent } from '../../elements/header/calculate-button-element/calculate-button-element.component';
 import { BudgetButtonElementComponent } from '../../elements/header/budget-button-element/budget-button-element.component';
+import { GroupButtonElementComponent } from '../../elements/header/group-button-element/group-button-element.component';
 
 @Component({
   selector: 'app-header-block',
@@ -10,6 +11,7 @@ import { BudgetButtonElementComponent } from '../../elements/header/budget-butto
   imports: [AddButtonHeaderElementComponent,
     CalculateButtonElementComponent,
     BudgetButtonElementComponent,
+    GroupButtonElementComponent
   ],
   templateUrl: './header-block.component.html',
   styleUrl: './header-block.component.css'

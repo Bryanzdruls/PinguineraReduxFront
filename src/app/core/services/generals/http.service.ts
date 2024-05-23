@@ -19,7 +19,6 @@ export class HttpService {
     return this.storageService.get<string>('TOKEN');
   }
 
-
   clearToken():void{
     this.storageService.remove('TOKEN');
     this.storageService.remove('USER');

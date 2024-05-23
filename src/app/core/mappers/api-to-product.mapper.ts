@@ -5,6 +5,7 @@ import { IMultiplePriceModel, IProductEntityListResponseModel } from "../models/
 import { CreateProductResponse } from "../models/product/createProductResponse.model";
 import { ProductStoreModel } from "../models/store/products/products.storemodel";
 import { IBudgetRequest, IBudgetResponse } from "../models/product/productBudget.model";
+import { GroupResponse } from "../models/product/group.model";
 
 @Injectable({
   providedIn: 'root'
@@ -78,6 +79,16 @@ export class ApiToProductMapper {
     const newCopiesResponse = payload.copiesResponse.map(copie =>({...copie,finalPrice:copie.price}));
     return {
       copiesResponse: newCopiesResponse,
+    }
+  }
+
+  groupResponse(payload:any):GroupResponse{
+    return {
+      groupResponses: payload.groupResponses,
+      priceTotal: payload.priceTotal,
+      discountMayorTotal: payload.discountMayorTotal,
+      discountCustomerTotal: payload.discountCustomerTotal,
+      incrementTotal: payload.incrementTotal,
     }
   }
 }

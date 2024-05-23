@@ -5,6 +5,7 @@ import { IProductEntityListResponseModel } from "../../models/product/multiplePr
 import { IProductIdAndQuantityOnlyModel } from "../../models/product/productIdQuantity.model";
 import { IBudgetRequest, IBudgetResponse } from "../../models/product/productBudget.model";
 import { IProductModelResponse } from "../../models/product/product.model";
+import { GroupRequest, GroupResponse } from "../../models/product/group.model";
 
 export interface ProductsState {
   providerId: string;
@@ -14,6 +15,8 @@ export interface ProductsState {
   multiplePriceResponse: IProductEntityListResponseModel
   budgetRequest:IBudgetRequest
   budgetResponse:IBudgetResponse
+  groupRequest: GroupRequest,
+  groupResponse: GroupResponse
 }
 
 export const initialState: ProductsState = {
@@ -24,6 +27,8 @@ export const initialState: ProductsState = {
   multiplePriceResponse: null,
   budgetRequest:null,
   budgetResponse:null,
+  groupRequest: null,
+  groupResponse: null
 }
 
 export const productReducer = createReducer(

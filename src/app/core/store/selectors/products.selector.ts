@@ -23,3 +23,9 @@ export const selectBudgetResponse = createSelector(
   selectProductsState,
   (state: ProductsState) => state.budgetResponse
 )
+
+export const selectGroupsResponse = createSelector(
+  selectProductsState,
+  (state: ProductsState) => state.groupResponse
+)
+

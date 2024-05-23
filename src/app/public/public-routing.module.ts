@@ -5,6 +5,7 @@ import { HeaderContainerComponent } from '../containers/header-container/header-
 import { ProductContainerComponent } from '../containers/product-container/product-container.component';
 import { ProductsContainerComponent } from '../containers/products-container/products-container.component';
 import { BudgetContainerComponent } from '../containers/budget-container/budget-container.component';
+import { GroupContainerComponent } from '../containers/group-container/group-container.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,14 @@ const routes: Routes = [
     {
       path:'budget',
       component:BudgetContainerComponent,
+    },
+    {
+      path:'groups',
+      component:GroupContainerComponent,
+    },
+    {
+      path: '**',
+      redirectTo: 'product'
     }
     ]
   }

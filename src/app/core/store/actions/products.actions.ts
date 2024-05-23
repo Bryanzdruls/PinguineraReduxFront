@@ -4,6 +4,7 @@ import { IProductModel, IProductModelResponse } from "../../models/product/produ
 import { IProductIdAndQuantityOnlyModel } from "../../models/product/productIdQuantity.model";
 import { IProductEntityListResponseModel } from "../../models/product/multiplePrice.model";
 import { IBudgetRequest, IBudgetResponse } from "../../models/product/productBudget.model";
+import { GroupRequest, GroupResponse } from '../../models/product/group.model';
 
 export const loadProducts = createAction('[Products] Load Products');
 export const loadProductsSuccess = createAction('[Products] Load Products Success', props<{ products: ProductStoreModel[] }>());
@@ -38,3 +39,15 @@ export const calculateBudgetSuccess = createAction(
   props<{budgetResponse:IBudgetResponse}>()
 )
 export const calculateBudgetFailure = createAction('[Products] Calculate Budget Failed',props<{error:string}>());
+
+
+export const calculateGroup = createAction(
+  '[Products] Calculate Group',
+  props<{groupRequest:GroupRequest}>()
+);
+export const calculateGroupSuccess = createAction(
+  '[Products] Calculate Group Success',
+  props<{groupResponse:GroupResponse}>());
+
+export const calculateGroupFailure = createAction('[Products] Calculate Group Failed',props<{error:string}>());
+

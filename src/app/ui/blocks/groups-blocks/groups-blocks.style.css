@@ -1,0 +1,131 @@
+.groups__container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.groups__title{
+  display: flex;
+  justify-content: center;
+  font-size:  3rem;
+}
+
+.groups__subtitle{
+  font-size: 3rem;
+}
+
+.groups__div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Esto separará los elementos entre sí */
+}
+
+.groups__item {
+  width: 400px;
+  /* Añade margen si deseas más espacio entre el item y el botón */
+  margin-right: 20px;
+}
+
+.groups__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0074D9;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* Añade sombra para un efecto más profundo */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.groups__button:hover {
+  background-color: #0056A7;
+  /* Cambia la sombra al pasar el ratón para un efecto dinámico */
+  box-shadow: 0 6px 12px 0 rgba(0,0,0,0.3);
+}
+
+
+
+.products__grid{
+  margin-top: 32px;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.products__section{
+  display: grid;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.products__button_element{
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.containerprice {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+.containerprice__title{
+  display: flex;
+  color: #000000;
+  justify-content: center;
+}
+
+.total__price{
+  display: flex;
+  justify-content: center;
+}
+
+.containerprice__card{
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.containerprice__inner{
+  display: flex;
+  flex: 1 ;
+  justify-content: flex-start;
+  align-self: center;
+}
+
+.products__tutorial_container{
+  display: grid;
+}
+
+.products__tutorial_title{
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.products__tutorial_desc{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.total__price{
+  margin-bottom: 20px;
+}
+
+@media(width <600px){
+  .products__grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

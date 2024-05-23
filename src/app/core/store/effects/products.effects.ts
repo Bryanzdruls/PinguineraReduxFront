@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects"
 import { catchError, map, mergeMap, of } from "rxjs"
 import * as ProductsActions from '../actions/products.actions'
 import { ProductService } from "../../services/products/products.service"
-import { modifyProduct, calculateBudget } from '../actions/products.actions';
+import { modifyProduct, calculateBudget, calculateGroup } from '../actions/products.actions';
 
 
 @Injectable()
@@ -64,5 +64,18 @@ export class ProductsEffects {
     )
   )
 
+  calculateGroup$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProductsActions.calculateGroup),
+      mergeMap((groupRequest) =>
+        this.productService.calculateGroup(groupRequest).pipe(
+          map((groupResponse) => ProductsActions.calculateGroupSuccess({ groupResponse })),
+          catchError((error) => {
+            return of(ProductsActions.calculateGroupFailure({error}))
+          })
+        )
+      )
+    )
+  )
   constructor(private readonly actions$: Actions, private readonly productService: ProductService) { }
 }
