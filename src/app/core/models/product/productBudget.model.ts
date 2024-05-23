@@ -1,11 +1,12 @@
 import { IProductModel } from "./product.model"
 
-export interface IProductBudgetModel {
-  listIds: number[],
+export interface IBudgetRequest {
+  providerId:string,
+  registrationDate:string
+  productIds: string[],
   budget: number
 }
 
-export interface IBudgetRequest {
-  products:IProductModel[],
-  budget:number
+export interface IBudgetResponse {
+  copiesResponse:IProductModel[],
 }

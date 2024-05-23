@@ -8,3 +8,12 @@ export const selectProducts = createSelector(
   selectProductsState,
   (state: ProductsState) => state.products
 )
+export const selectMultiplePriceProductsResponse = createSelector(
+  selectProductsState,
+  (state: ProductsState) => state.multiplePriceResponse
+)
+
+export const selectBudgetResponse = createSelector(
+  selectProductsState,
+  (state: ProductsState) => state.budgetResponse
+)

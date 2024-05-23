@@ -1,17 +1,20 @@
 export interface IMultiplePriceModel {
-  name: string;
-  basePrice: number;
-  quantity: number;
-  productType: string;
-  finalPrice: number;
-  discount: {
-    DiscountDetalMayor?: number;
-    IncrementDetalMayor?: number;
-  };
-  finalPricePerQuantity: number;
+  providerId: string
+  copyId: string
+  title: string
+  author: string
+  stock: number
+  price: number
+  copyType: string
+  increment:number,
+  discountMayor:number,
+  discountCustomer:number,
 }
 
 export interface IProductEntityListResponseModel {
-  productEntityList: IMultiplePriceModel[];
-  totalFinalPrice: number;
+  copiesResponse: IMultiplePriceModel[];
+  priceTotal:number;
+  discountMayorTotal:number;
+  discountCustomerTotal:number;
+  incrementTotal:number;
 }

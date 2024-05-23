@@ -13,14 +13,14 @@ export class ProductItemElementComponent {
   @Input() product:ProductStoreModel;
 
   decreaseQuantity(){
-    if (this.product.quantity> 0) {
-      this.product.quantity--;
+    if (this.product.stock> 0) {
+      this.product.stock--;
     }
   }
 
   increaseQuantity(){
     console.log();
-    this.product.quantity++;
+    this.product.stock++;
   }
 
 }

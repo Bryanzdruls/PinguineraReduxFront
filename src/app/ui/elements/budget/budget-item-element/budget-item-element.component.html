@@ -1,0 +1,13 @@
+<section class="containerprice__inner">
+  <p class="product__name">{{item.title}}</p>
+  <div>
+      <p class="item__name">Nombre: {{item.title}}</p>
+      <p>Cantidad: {{item.stock}}</p>
+      <p>Precio final: {{item.finalPrice}}</p>
+      @if (item.type== 'BOOK') {
+        <p>Tipo de Producto: Libro</p>
+      }@else if (item.type== 'NOVEL') {
+        <p>Tipo de Producto: Novel</p>
+      }
+  </div>
+</section>

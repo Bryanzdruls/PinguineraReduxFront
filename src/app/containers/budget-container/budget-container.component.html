@@ -1,0 +1,3 @@
+<app-budget-block [products]="products$ | async"
+                  [budgetResponse]="budgetResponse$ | async"
+                  (eventEmmitter)="receiveProducts($event)"/>

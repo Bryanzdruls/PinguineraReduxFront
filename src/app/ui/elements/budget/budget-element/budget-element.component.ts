@@ -1,21 +1,19 @@
 import { Component, Input } from '@angular/core';
-import { ProductStoreModel } from '../../../../core/models/store/products/products.storemodel';
+import { QuantityElementComponent } from '../../products/quantity-element/quantity-element.component';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../core/store/store';
+import { ProductStoreModel } from '../../../../core/models/store/products/products.storemodel';
 import * as ProductActions from '../../../../core/store/actions/products.actions'
 @Component({
-  selector: 'app-quantity-element',
+  selector: 'app-budget-element',
   standalone: true,
-  imports: [],
-  templateUrl: './quantity-element.component.html',
-  styleUrl: './quantity-element.component.css'
+  imports: [QuantityElementComponent],
+  templateUrl: './budget-element.component.html',
+  styleUrl: './budget-element.component.css'
 })
-export class QuantityElementComponent {
-  @Input() product:ProductStoreModel
-  @Input() max:number
-
+export class BudgetElementComponent {
+  @Input() product:ProductStoreModel;
   constructor(private store: Store<AppState>) {}
-
   decreaseQuantity(){
     if (this.product.stock> 0) {
       const newProduct = {...this.product, stock: this.product.stock-1}
@@ -23,15 +21,10 @@ export class QuantityElementComponent {
     }
   }
 
-  increaseQuantity(max:number){
-    if (max == undefined) {
+  increaseQuantity(){
+    if (!(this.product.stock >=1)) {
       const newProduct = {...this.product, stock: this.product.stock+1}
       this.store.dispatch(ProductActions.modifyProduct({product:newProduct}));
-    }else{
-      if (!(this.product.stock >=max)) {
-        const newProduct = {...this.product, stock: this.product.stock+1}
-        this.store.dispatch(ProductActions.modifyProduct({product:newProduct}));
-      }
     }
   }
 }

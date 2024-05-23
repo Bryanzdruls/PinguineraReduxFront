@@ -1,9 +1,10 @@
 export interface ProductStoreModel {
   providerId: string
   copyId: string
-  name: string
+  title: string
   author: string
-  quantity: number
+  stock: number
+  publicationYear:number;
   finalPrice: number
-  copytype: string
+  type: string
 }

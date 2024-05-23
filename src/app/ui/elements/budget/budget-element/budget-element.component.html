@@ -7,11 +7,11 @@
   }
   <p class="product__name">{{product.title}}</p>
 
-  <p class="product__desc">Precio base: ${{product.finalPrice}}</p>
+  <p class="product__desc">Precio: ${{product.finalPrice}}</p>
   @if (product.type == "NOVEL") {
     <p class="product__desc">Tipo: Novela</p>
   }@else if (product.type == "BOOK") {
     <p class="product__desc">Tipo: Libro</p>
   }
-  <app-quantity-element [product]="product" [max]="undefined"/>
+  <app-quantity-element [product]="product" [max]="1"/>
 </div>

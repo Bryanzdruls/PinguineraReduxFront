@@ -4,6 +4,7 @@ import { PublicLayoutComponent } from '../ui/layouts/public/public-layout/public
 import { HeaderContainerComponent } from '../containers/header-container/header-container.component';
 import { ProductContainerComponent } from '../containers/product-container/product-container.component';
 import { ProductsContainerComponent } from '../containers/products-container/products-container.component';
+import { BudgetContainerComponent } from '../containers/budget-container/budget-container.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
       path:'products',
       component:ProductsContainerComponent,
     },
+    {
+      path:'budget',
+      component:BudgetContainerComponent,
+    }
     ]
   }
 ];

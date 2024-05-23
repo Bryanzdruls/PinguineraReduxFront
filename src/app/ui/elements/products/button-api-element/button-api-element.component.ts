@@ -13,7 +13,7 @@ export class ButtonApiElementComponent {
   @Input() products:ProductStoreModel[];
 
   hasProductWithQuantity(products: any[]): boolean {
-    return products.some(product => product.quantity > 0);
+    return products.some(product => product.stock > 0);
   }
 
   @Output() eventEmmitter = new EventEmitter<ProductStoreModel[]>();

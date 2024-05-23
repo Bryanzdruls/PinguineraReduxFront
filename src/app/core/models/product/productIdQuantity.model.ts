@@ -1,6 +1,8 @@
 export interface IProductIdAndQuantityOnlyModel {
-  productIdList: {
-    id: number;
+  providerId: string;
+  productsIdsQuantity: {
+    id: string;
     quantity: number;
-  }[];
+  }[],
+  registrationDate: String;
 }

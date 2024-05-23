@@ -2,7 +2,7 @@
   @if (multiplePriceResponse) {
   <h1 class="containerprice__title">Calculos realizados: </h1>
   <div class="containerprice">
-    @for (item of multiplePriceResponse.productEntityList; track $index) {
+    @for (item of multiplePriceResponse.copiesResponse; track $index) {
     <div class="containerprice__card">
       <h2 class="container__index">{{$index+1}}.</h2>
       <app-multipleprice-response-element class="containerprice__inner" [item]="item" />
@@ -10,7 +10,10 @@
     }
 
   </div>
-  <h2 class="total__price">Precio Total: {{multiplePriceResponse.totalFinalPrice}}</h2>
+  <h2 class="total__price">Precio Total: {{multiplePriceResponse.priceTotal}}</h2>
+  <h2 class="total__price">Descuento al mayor Total: {{multiplePriceResponse.discountMayorTotal}}</h2>
+  <h2 class="total__price">Descuento cliente Total: {{multiplePriceResponse.discountCustomerTotal}}</h2>
+  <h2 class="total__price">Incremento Total: {{multiplePriceResponse.incrementTotal}}</h2>
   }@else{
   <div class="products__tutorial_container">
     <h2 class="products__tutorial_title">Calcular Precio </h2>

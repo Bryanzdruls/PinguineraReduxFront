@@ -2,9 +2,9 @@ import { Injectable } from "@angular/core";
 import { IProductModel } from "../models/product/product.model";
 import { IProductIdAndQuantityOnlyModel } from "../models/product/productIdQuantity.model";
 import { IMultiplePriceModel, IProductEntityListResponseModel } from "../models/product/multiplePrice.model";
-import { IProductBudgetModel } from "../models/product/productBudget.model";
 import { CreateProductResponse } from "../models/product/createProductResponse.model";
 import { ProductStoreModel } from "../models/store/products/products.storemodel";
+import { IBudgetRequest, IBudgetResponse } from "../models/product/productBudget.model";
 
 @Injectable({
   providedIn: 'root'
@@ -30,15 +30,19 @@ export class ApiToProductMapper {
         copyId: payload.copyId,
         title: payload.title,
         author: payload.author,
-        stock: payload.stock,
+        stock: payload.stock-1,
         finalPrice: payload.finalPrice,
-        copytype: payload.copytype,
+        type: payload.copyType,
       }
     ))
   }
 
   mapToMultipleProductsAndClientTypeDto(payload: any): IProductIdAndQuantityOnlyModel {
-    const filteredPayload = payload.filter(item => item.quantity > 0);
+    const newProductsIdsQuantity =payload.multiplePriceRequest.productsIdsQuantity.map(product => ({
+      ...product,
+      quantity: product.quantity + 1
+    }));
+    const filteredPayload = newProductsIdsQuantity.filter(item => item.quantity > 0);
 
     const productIdList = filteredPayload.map(item => ({
       id: item.id,
@@ -46,37 +50,35 @@ export class ApiToProductMapper {
     }));
 
     return {
-      productIdList: productIdList
+      providerId: payload.multiplePriceRequest.providerId,
+      productsIdsQuantity: productIdList,
+      registrationDate:payload.multiplePriceRequest.registrationDate
     };
   }
 
   multiplePriceResponse(payload:IProductEntityListResponseModel):IProductEntityListResponseModel{
     return {
-      productEntityList: payload.productEntityList,
-      totalFinalPrice: payload.totalFinalPrice,
+      copiesResponse: payload.copiesResponse,
+      priceTotal: payload.priceTotal,
+      discountMayorTotal: payload.discountMayorTotal,
+      discountCustomerTotal: payload.discountCustomerTotal,
+      incrementTotal: payload.incrementTotal,
     }
   }
 
-  mapToBudgetRequest(payload: any): IProductBudgetModel {
+  mapToBudgetRequest(payload: any): IBudgetRequest {
     return {
-      listIds:payload.products.map(item => item.id),
-      budget: payload.budget.budget
+      providerId:payload.providerId,
+      productIds:payload.productIds,
+      budget: payload.budget.budget,
+      registrationDate: payload.registrationDate
     };
   }
 
-  budgetResponse(payload:any):IMultiplePriceModel[]{
-    return payload.map((item) =>({
-      name: item.name,
-      basePrice: item.basePrice,
-      quantity: item.quantity,
-      productType: item.productType,
-      finalPrice: item.finalPrice,
-      discount:{
-        DiscountDetalMayor: item.discount.DiscountDetalMayor,
-        IncrementDetalMayor: item.discount.IncrementDetalMayor,
-      },
-      finalPricePerQuantity: item.finalPricePerQuantity,
-    }))
-
+  budgetResponse(payload:any):IBudgetResponse{
+    const newCopiesResponse = payload.copiesResponse.map(copie =>({...copie,finalPrice:copie.price}));
+    return {
+      copiesResponse: newCopiesResponse,
+    }
   }
 }
