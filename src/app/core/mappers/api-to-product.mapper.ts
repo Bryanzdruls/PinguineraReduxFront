@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { IProductModel } from "../models/product/product.model";
+import { IProductModel, IProductModelResponse } from "../models/product/product.model";
 import { IProductIdAndQuantityOnlyModel } from "../models/product/productIdQuantity.model";
 import { IMultiplePriceModel, IProductEntityListResponseModel } from "../models/product/multiplePrice.model";
 import { CreateProductResponse } from "../models/product/createProductResponse.model";
@@ -10,16 +10,15 @@ import { IBudgetRequest, IBudgetResponse } from "../models/product/productBudget
   providedIn: 'root'
 })
 export class ApiToProductMapper {
-  map(payload: any): IProductModel {
+  map(payload: any): IProductModelResponse {
     return {
       providerId: payload.providerId,
       copyId: payload.copyId,
       title: payload.title,
       author: payload.author,
       stock: payload.stock,
-      publicationYear: payload.publicationyear,
       finalPrice: payload.finalPrice,
-      type: payload.copytype,
+      copyType: payload.copyType,
     }
   }
 

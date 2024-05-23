@@ -4,6 +4,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CreateProductResponse } from '../../../core/models/product/createProductResponse.model';
 
 import { FieldElementComponent } from '../../elements/field-element/field-element.component';
+import { ProductStoreModel } from '../../../core/models/store/products/products.storemodel';
+import { IProductModelResponse } from '../../../core/models/product/product.model';
 
 @Component({
   selector: 'app-form-product',
@@ -15,18 +17,18 @@ import { FieldElementComponent } from '../../elements/field-element/field-elemen
 export class FormProductComponent {
   options: string[] = ['BOOK', 'NOVEL'];
   selectedOption: string;
-  @Input() productResponse: CreateProductResponse;
+  @Input() productResponse: IProductModelResponse;
   @Output() formEmitter = new EventEmitter();;
 
   applyForm= new FormGroup({
-    providerId: new FormGroup('',Validators.required),
+    providerId: new FormControl('',Validators.required),
     title: new FormControl('',[
       Validators.required,
     ]),
     author: new FormControl('',[
       Validators.required,
     ]),
-    publicationyear: new FormControl('',[
+    publicationYear: new FormControl('',[
       Validators.required,
       Validators.min(1900),
       Validators.max(2024)
@@ -44,14 +46,15 @@ export class FormProductComponent {
 
   onSubmit(){
     switch(this.applyForm.getRawValue() as any){
-      case "BOOK":
-        this.applyForm.controls['type'].setValue(0 as any);
+      case "0":
+        this.applyForm.controls['type'].setValue('BOOK');
         break;
-      case "NOVEL":
-        this.applyForm.controls['type'].setValue(1 as any);
+      case "1":
+        this.applyForm.controls['type'].setValue('NOVEL');
         break;
     }
-    this.formEmitter.emit(this.applyForm.getRawValue());
+    const toEmitForm = this.applyForm.getRawValue() as any;
+    this.formEmitter.emit(toEmitForm);
   }
 
   get title() {
@@ -62,8 +65,8 @@ export class FormProductComponent {
     return this.applyForm.get('title');
   }
 
-  get publicationyear(){
-    return this.applyForm.get('publicationyear');
+  get publicationYear(){
+    return this.applyForm.get('publicationYear');
   }
 
   get price(){

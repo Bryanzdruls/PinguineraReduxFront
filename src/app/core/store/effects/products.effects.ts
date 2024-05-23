@@ -22,15 +22,20 @@ export class ProductsEffects {
     )
   )
 
-  /*
   createProduct$ = createEffect(()=>
     this.actions$.pipe(
       ofType(ProductsActions.createProduct),
-      mergeMap(()=>
-        this.productService.
+      mergeMap(({product}) =>
+        this.productService.createProduct(product).pipe(
+          map((product) => ProductsActions.createProductSuccess({ product })),
+          catchError((error) => {
+            return of(ProductsActions.createProductFailed({error}))
+          })
+        )
       )
     )
-  )*/
+  )
+
   calculateMultiplePrice$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductsActions.calculateMultiplePrice),

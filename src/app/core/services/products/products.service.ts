@@ -3,7 +3,7 @@ import { Observable, of, delay, map } from 'rxjs';
 import { ProductStoreModel } from '../../models/store/products/products.storemodel';
 import { URL_RESOURCES } from '../../resources/url.resource';
 import { HttpService } from '../generals/http.service';
-import { IProductModel } from '../../models/product/product.model';
+import { IProductModel, IProductModelResponse } from '../../models/product/product.model';
 import { ApiToProductMapper } from '../../mappers/api-to-product.mapper';
 import { IMultiplePriceModel, IProductEntityListResponseModel } from '../../models/product/multiplePrice.model';
 import { IProductIdAndQuantityOnlyModel } from '../../models/product/productIdQuantity.model';
@@ -27,11 +27,12 @@ export class ProductService {
         .pipe(map((result) => this.mapper.mapArray(result)))
   }
 
-  createProduct(productData):Observable<any> {
+  createProduct(productData):Observable<IProductModelResponse> {
+    const productTosave = {...productData, stock:1};
     const url = URL_RESOURCES.createproduct;
     return this.httpService
-      .post<IProductModel>(url,productData)
-      .pipe(map((result) => this.mapper.map(result)));
+      .post<IProductModelResponse>(url,productTosave)
+      .pipe(map((result) => this.mapper.map(result[0])));
   }
 
   calculateMultiplePrice(payload){

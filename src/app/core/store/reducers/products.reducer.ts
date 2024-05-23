@@ -4,9 +4,12 @@ import * as ProductActions from '../actions/products.actions';
 import { IProductEntityListResponseModel } from "../../models/product/multiplePrice.model";
 import { IProductIdAndQuantityOnlyModel } from "../../models/product/productIdQuantity.model";
 import { IBudgetRequest, IBudgetResponse } from "../../models/product/productBudget.model";
+import { IProductModelResponse } from "../../models/product/product.model";
 
 export interface ProductsState {
+  providerId: string;
   products: ProductStoreModel[];
+  productResponse: IProductModelResponse;
   multiplePriceRequest: IProductIdAndQuantityOnlyModel
   multiplePriceResponse: IProductEntityListResponseModel
   budgetRequest:IBudgetRequest
@@ -14,7 +17,9 @@ export interface ProductsState {
 }
 
 export const initialState: ProductsState = {
+  providerId:null,
   products: [],
+  productResponse: null,
   multiplePriceRequest:null,
   multiplePriceResponse: null,
   budgetRequest:null,
@@ -25,6 +30,9 @@ export const productReducer = createReducer(
   initialState,
   on(ProductActions.loadProducts, state => ({ ...state})),
   on(ProductActions.loadProductsSuccess, (state, action) => ({ ...state, products: action.products })),
+
+  on(ProductActions.createProduct, state => ({ ...state})),
+  on(ProductActions.createProductSuccess, (state, action) => ({ ...state, productResponse: action.product })),
 
   on(ProductActions.modifyProduct, (state, action)=> (
     {...state,

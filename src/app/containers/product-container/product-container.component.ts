@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductBlockComponent } from '../../ui/blocks/product-block/product-block.component';
-import { IProductModel } from '../../core/models/product/product.model';
+import { IProductModel, IProductModelResponse } from '../../core/models/product/product.model';
 import { ProductContainerFacade } from './product-container.facade';
 import { Observable } from 'rxjs';
 import { CreateProductResponse } from '../../core/models/product/createProductResponse.model';
 import { AsyncPipe } from '@angular/common';
+import { ProductStoreModel } from '../../core/models/store/products/products.storemodel';
 
 @Component({
   selector: 'app-product-container',
@@ -14,7 +15,7 @@ import { AsyncPipe } from '@angular/common';
 })
 export class ProductContainerComponent implements OnInit, OnDestroy{
 
-  public productResponse$: Observable<CreateProductResponse>;
+  public productResponse$: Observable<IProductModelResponse>;
 
   constructor(
     private readonly facade: ProductContainerFacade
@@ -34,6 +35,6 @@ export class ProductContainerComponent implements OnInit, OnDestroy{
   }
 
   private initializeSubscriptions(): void {
-    //this.productResponse$ = this.facade.creationProductResult$();
+    this.productResponse$ = this.facade.productResponse$();
   }
 }

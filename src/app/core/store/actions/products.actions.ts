@@ -1,6 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { ProductStoreModel } from "../../models/store/products/products.storemodel";
-import { IProductModel } from "../../models/product/product.model";
+import { IProductModel, IProductModelResponse } from "../../models/product/product.model";
 import { IProductIdAndQuantityOnlyModel } from "../../models/product/productIdQuantity.model";
 import { IProductEntityListResponseModel } from "../../models/product/multiplePrice.model";
 import { IBudgetRequest, IBudgetResponse } from "../../models/product/productBudget.model";
@@ -10,6 +10,9 @@ export const loadProductsSuccess = createAction('[Products] Load Products Succes
 export const loadProductsFailed = createAction('[Products] Load Products Failed', props<{ error: string }>());
 
 export const createProduct = createAction('[Products] Create Product',props<{product:IProductModel}>());
+export const createProductSuccess = createAction('[Products] Create Product Success',props<{product:IProductModelResponse}>());
+export const createProductFailed = createAction('[Products] Create Product Failed', props<{ error: string }>());
+
 
 
 export const calculateMultiplePrice = createAction(

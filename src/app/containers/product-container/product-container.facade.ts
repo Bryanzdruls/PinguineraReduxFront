@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Observable, Subscription, tap } from "rxjs";
 import { CreateProductResponse } from "../../core/models/product/createProductResponse.model";
-import { IProductModel } from "../../core/models/product/product.model";
+import { IProductModel, IProductModelResponse } from "../../core/models/product/product.model";
 import { Store } from "@ngrx/store";
 import { AppState } from "../../core/store/store";
-
+import { selectProductResponse } from "../../core/store/selectors/products.selector";
+import * as ProductActions from '../../core/store/actions/products.actions';
+import { ProductStoreModel } from "../../core/models/store/products/products.storemodel";
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +20,9 @@ export class ProductContainerFacade {
   ){}
 
   //#region observables
+  productResponse$():Observable<IProductModelResponse> {
+    return this.store.select(selectProductResponse)
+  }
   //#endregion
 
   //#region public methods
@@ -30,7 +35,7 @@ export class ProductContainerFacade {
   }
 
   createProduct(productData:IProductModel): void{
-
+    this.store.dispatch(ProductActions.createProduct({product:productData}))
   }
   //#endregion
 
