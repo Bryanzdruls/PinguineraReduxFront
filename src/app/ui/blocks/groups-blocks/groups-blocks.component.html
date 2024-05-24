@@ -1,24 +1,4 @@
 <div class="products__section">
-  @if (groupResponse) {
-    <h1 class="containerprice__title">Calculos realizados: </h1>
-    <div class="containerprice">
-      @for (item of groupResponse.generalGroup; track $index) {
-        <h1>Group {{$index+1}}</h1>
-        @for (product of item.copies; track $index) {
-            <h2 class="container__index">{{$index+1}}</h2>
-            <app-multipleprice-response-element class="containerprice__inner" [item]="product"></app-multipleprice-response-element>
-        }
-        <h1 class="containerprice__title">Precio: {{item.pricePerGroup}} </h1>
-        <h1 class="containerprice__title">Descuento Mayor: {{item.discountMayorPerGroup}} </h1>
-        <h1 class="containerprice__title">Descuento customer: {{item.discountCustomerPerGroup}} </h1>
-        <h1 class="containerprice__title">Incremento: {{item.incrementDetalPerGroup}} </h1>
-      }
-      <h1 class="containerprice__title">Precio total: {{groupResponse.priceTotal}} </h1>
-      <h1 class="containerprice__title">Descuento total Mayor: {{groupResponse.discountMayorTotal}} </h1>
-      <h1 class="containerprice__title">Descuento total customer: {{groupResponse.discountCustomerTotal}} </h1>
-      <h1 class="containerprice__title">Incremento total: {{groupResponse.incrementTotal}} </h1>
-    </div>
-  }
   <div class="principal__title">
     <h3 class="groups__title">Productos Disponibles</h3>
   </div>
@@ -45,9 +25,59 @@
   </div>
 
   @for (agrupacion of agrupaciones; track $index) {
-    <div class="group__confirmation">
-      <p >Grupo {{ $index + 1 }} Se ha añadido el grupo correctamente.</p>
+    <div class="group__confirmation animate__backInDown">
+      <p class="animate__backInDown">Grupo {{ $index + 1 }} Se ha añadido el grupo correctamente.</p>
     </div>
   }
+</div>
 
+
+<div class="modal" [ngClass]="{'show':showModal}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Calculos realizados</h5>
+        <button type="button" class="close" (click)="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        @if (groupResponse) {
+          @for (generalGroup of groupResponse.generalGroup; track $index) {
+            <h6 class="groupment__title">Grupo {{$index+1}}</h6>
+
+          <table class="table table-bordered">
+            <thead>
+              <th>title</th>
+              <th>author</th>
+              <th>cantidad</th>
+              <th>precio</th>
+            </thead>
+            <tbody>
+              @for (copy of generalGroup.copies; track $index) {
+                <tr>
+                  <td>{{copy.title}}</td>
+                  <td>{{copy.author}}</td>
+                  <td>{{copy.stock}}</td>
+                  <td>{{copy.price | currency}}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+          <div class="prices">
+            <p><strong>Price Per group: </strong>{{generalGroup.pricePerGroup.toFixed(0)}}</p>
+            <p><strong>Discount Per group mayor: </strong>{{generalGroup.discountMayorPerGroup.toFixed(0)}}</p>
+            <p><strong>Discount Per group customer: </strong>{{generalGroup.discountCustomerPerGroup.toFixed(0)}}</p>
+            <p><strong>Increment Per group: </strong>{{generalGroup.incrementDetalPerGroup.toFixed(0)}}</p>
+          </div>
+          }
+          <div class="prices prices_totals">
+            <p><strong>Total Price: </strong>{{groupResponse.priceTotal.toFixed(0)}}</p>
+            <p><strong>Total Discount mayor: </strong>{{groupResponse.discountMayorTotal.toFixed(0)}}</p>
+            <p><strong>Total Discount customer: </strong>{{groupResponse.discountCustomerTotal.toFixed(0)}}</p>
+            <p><strong>Total Increment: </strong>{{groupResponse.incrementTotal.toFixed(0)}}</p>
+          </div>
+        }
+
+      </div>
+    </div>
+  </div>
 </div>

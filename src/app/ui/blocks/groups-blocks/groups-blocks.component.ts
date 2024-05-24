@@ -4,11 +4,13 @@ import { MultiplepriceResponseElementComponent } from '../../elements/products/m
 import { ButtonApiElementComponent } from '../../elements/products/button-api-element/button-api-element.component';
 import { ProductStoreModel } from '../../../core/models/store/products/products.storemodel';
 import { GroupRequest, GroupResponse, ProductsIDSQuantity } from '../../../core/models/product/group.model';
+import { ModelGroupBlockComponent } from '../model-group-block/model-group-block.component';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-groups-blocks',
   standalone: true,
-  imports: [ProductItemElementComponent,MultiplepriceResponseElementComponent,ButtonApiElementComponent],
+  imports: [CurrencyPipe,CommonModule,ProductItemElementComponent,MultiplepriceResponseElementComponent,ButtonApiElementComponent, ModelGroupBlockComponent],
   templateUrl: './groups-blocks.component.html',
   styleUrl: './groups-blocks.style.css'
 })
@@ -22,7 +24,7 @@ export class GroupsBlocksComponent {
   public showModal: boolean;
 
 
-  closeModalTab(): void {
+  closeModal(): void {
     this.showModal=false
   }
 
@@ -65,6 +67,9 @@ export class GroupsBlocksComponent {
       registrationDate: fechaFormateada
     };
     this.eventEmmitter.emit(groupedEmit);
+    this.showModal= true;
+    this.agrupaciones= []
+    this.seleccionados =[]
   }
 
   estaSeleccionado(elemento: ProductStoreModel): boolean {

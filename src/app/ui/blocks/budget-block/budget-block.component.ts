@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { IProductModel } from '../../../core/models/product/product.model';
 import { IMultiplePriceModel, IProductEntityListResponseModel } from '../../../core/models/product/multiplePrice.model';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule, CurrencyPipe } from '@angular/common';
 import { IBudgetRequest, IBudgetResponse } from '../../../core/models/product/productBudget.model';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -14,7 +14,7 @@ import { ProductStoreModel } from '../../../core/models/store/products/products.
 @Component({
   selector: 'app-budget-block',
   standalone: true,
-  imports: [BudgetElementComponent, ReactiveFormsModule,BudgetItemElementComponent, ButtonApiElementComponent],
+  imports: [CommonModule,CurrencyPipe,BudgetElementComponent, ReactiveFormsModule,BudgetItemElementComponent, ButtonApiElementComponent],
   templateUrl: './budget-block.component.html',
   styleUrl: './budget-block.component.css'
 })
@@ -22,14 +22,16 @@ export class BudgetBlockComponent {
   @Input() products: ProductStoreModel[];
   @Input() budgetResponse: IBudgetResponse;
 
-
+  showModal: boolean;
   applyForm:FormGroup = new FormGroup({
     budget: new FormControl('1000',[
       Validators.required,
       Validators.min(0)
     ])
   })
-
+  closeModal(): void {
+    this.showModal=false
+  }
   budgetRequest:IBudgetRequest;
   @Output() eventEmmitter = new EventEmitter<IBudgetRequest>();
 
@@ -46,6 +48,7 @@ export class BudgetBlockComponent {
     }
 
     this.eventEmmitter.emit(this.budgetRequest);
+    this.showModal =true;
   }
 
   get budget(){

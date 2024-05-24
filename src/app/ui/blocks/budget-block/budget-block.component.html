@@ -1,22 +1,10 @@
 <section class="products__section">
-  @if (budgetResponse) {
-  <h1 class="containerprice__title">Calculos realizados: </h1>
-  <div class="containerprice">
-    @for (item of budgetResponse.copiesResponse; track $index) {
-    <div class="containerprice__card">
-      <h2 class="container__index">{{$index+1}}.</h2>
-      <app-budget-item-element class="containerprice__inner" [item]="item" />
-    </div>
-    }
-  </div>
-  }@else {
+
   <div class="products__tutorial_container">
     <h2 class="products__tutorial_title">Calcular Presupuesto </h2>
     <p class="products__tutorial_desc">Escoge la cantidad de productos que requieras y añade tu presupuesto, el boton
       estara deshabilitado hasta que escojas almenos 1</p>
   </div>
-  }
-
   <form [formGroup]="applyForm">
     <div class="number__input_container">
       <input type="number" class="styled_input" formControlName="budget" placeholder="budget">
@@ -34,3 +22,35 @@
     }
   </article>
 </section>
+<div class="modal" [ngClass]="{'show':showModal}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Calculos realizados</h5>
+        <button type="button" class="close" (click)="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        @if (budgetResponse) {
+          <table class="table table-bordered">
+            <thead>
+              <th>title</th>
+              <th>author</th>
+              <th>cantidad</th>
+              <th>precio</th>
+            </thead>
+            <tbody>
+              @for (copy of  budgetResponse.copiesResponse; track $index) {
+                <tr>
+                  <td>{{copy.title}}</td>
+                  <td>{{copy.author}}</td>
+                  <td>{{copy.stock}}</td>
+                  <td>{{copy.finalPrice | currency}}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+      </div>
+    </div>
+  </div>
+</div>

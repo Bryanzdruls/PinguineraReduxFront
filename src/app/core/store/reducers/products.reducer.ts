@@ -21,7 +21,7 @@ export interface ProductsState {
 }
 
 export const initialState: ProductsState = {
-  providerId:null,
+  providerId:'beb6488e-c3a4-46e7-9172-1569d7196099',
   products: [],
   productResponse: null,
   multiplePriceRequest:null,

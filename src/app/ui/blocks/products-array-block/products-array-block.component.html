@@ -1,26 +1,9 @@
 <section class="products__section">
-  @if (multiplePriceResponse) {
-  <h1 class="containerprice__title">Calculos realizados: </h1>
-  <div class="containerprice">
-    @for (item of multiplePriceResponse.copiesResponse; track $index) {
-    <div class="containerprice__card">
-      <h2 class="container__index">{{$index+1}}.</h2>
-      <app-multipleprice-response-element class="containerprice__inner" [item]="item" />
-    </div>
-    }
-
-  </div>
-  <h2 class="total__price">Precio Total: {{multiplePriceResponse.priceTotal}}</h2>
-  <h2 class="total__price">Descuento al mayor Total: {{multiplePriceResponse.discountMayorTotal}}</h2>
-  <h2 class="total__price">Descuento cliente Total: {{multiplePriceResponse.discountCustomerTotal}}</h2>
-  <h2 class="total__price">Incremento Total: {{multiplePriceResponse.incrementTotal}}</h2>
-  }@else{
   <div class="products__tutorial_container">
     <h2 class="products__tutorial_title">Calcular Precio </h2>
     <p class="products__tutorial_desc">Escoge la cantidad de productos que requieras y obtendras el precio y sus
       descuentos, el boton estara habilitado hasta que escojas almenos un producto</p>
   </div>
-  }
   <app-button-api-element class="products__button_element" [products]="products" (eventEmmitter)="emit()"/>
   <article class="products__grid">
     @for (product of products; track $index) {
@@ -28,3 +11,49 @@
     }
   </article>
 </section>
+
+
+
+<div class="modal" [ngClass]="{'show':showModal}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Calculos realizados</h5>
+        <button type="button" class="close" (click)="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        @if (multiplePriceResponse) {
+          <table class="table table-bordered">
+            <thead>
+              <th>title</th>
+              <th>author</th>
+              <th>precio</th>
+              <th>desc mayor</th>
+              <th>desc cust</th>
+              <th>incremento</th>
+            </thead>
+            <tbody>
+              @for (copy of  multiplePriceResponse.copiesResponse; track $index) {
+                <tr>
+                  <td>{{copy.title}}</td>
+                  <td>{{copy.stock}}</td>
+                  <td>{{copy.price | currency}}</td>
+
+                  <td>{{copy.discountMayor | currency}}</td>
+                  <td>{{copy.discountCustomer| currency}}</td>
+                  <td>{{copy.increment | currency}}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+          <div class="prices prices_totals">
+            <p><strong>Total Price: </strong>{{multiplePriceResponse.priceTotal.toFixed(0)}}</p>
+            <p><strong>Total Discount mayor: </strong>{{multiplePriceResponse.discountMayorTotal.toFixed(0)}}</p>
+            <p><strong>Total Discount customer: </strong>{{multiplePriceResponse.discountCustomerTotal.toFixed(0)}}</p>
+            <p><strong>Total Increment: </strong>{{multiplePriceResponse.incrementTotal.toFixed(0)}}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
