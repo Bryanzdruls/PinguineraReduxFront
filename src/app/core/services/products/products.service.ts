@@ -21,6 +21,18 @@ export class ProductService {
     private readonly mapper: ApiToProductMapper
   ) {}
 
+  getProviderId(): Observable<{ providerId: string }> {
+    const url = URL_RESOURCES.getProviderId;
+    return this.httpService.get(url).pipe(
+      map((result) => {
+        console.log('Result from HTTP call:', result);
+        const mappedResult = this.mapper.mapProvider(result);
+        console.log('Mapped result:', mappedResult);
+        return mappedResult;
+      })
+    );
+  }
+
   getAll(): Observable<ProductStoreModel[]> {
     const url = URL_RESOURCES.getproducts;
     return this.httpService

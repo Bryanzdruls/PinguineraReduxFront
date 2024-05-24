@@ -6,8 +6,6 @@ import { Injectable } from '@angular/core';
 })
 export class ErrosService {
   extract(error:HttpErrorResponse): HttpErrorResponse{
-    alert('Error en autenticacion')
-
     return {
       error
     } as HttpErrorResponse

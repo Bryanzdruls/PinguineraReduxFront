@@ -1,9 +1,32 @@
-<nav class="nav">
-  <ul class="nav__menu">
-    <app-add-button-header-element/>
-    <app-calculate-button-element/>
-    <app-budget-button-element/>
-    <app-group-button-element/>
-  </ul>
-</nav>
-
+<section class="navigation">
+  <div class="nav-container">
+    <div class="brand">
+      <a href="#!">Logo</a>
+    </div>
+    <nav>
+      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+      <ul class="nav-list">
+        <li class="nav__item">
+          <a (click)="navigateToCreateProduct()" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/icons/add.svg">
+          </a>
+        </li>
+        <li class="nav__item">
+          <a (click)="navigateToGetPriceByMultipleProducts()" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/icons/calculator.svg">
+          </a>
+        </li>
+        <li class="nav__item">
+          <a (click)="navigateToGetProductsByBudget()" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/icons/coin.svg" alt="budget">
+          </a>
+        </li>
+        <li class="nav__item">
+          <a (click)="navigateToGroups()" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/icons/calculator.svg">
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>

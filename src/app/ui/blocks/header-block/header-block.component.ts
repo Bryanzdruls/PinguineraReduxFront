@@ -23,14 +23,17 @@ export class HeaderBlockComponent {
   ){}
 
   navigateToCreateProduct(){
-    this.router.navigateByUrl(`api/product`)
+    this.router.navigateByUrl(`/product`)
   }
 
   navigateToGetPriceByMultipleProducts(){
-    this.router.navigateByUrl(`api/products`)
+    this.router.navigateByUrl(`/products`)
   }
 
   navigateToGetProductsByBudget(){
-    this.router.navigateByUrl(`api/budget`)
+    this.router.navigateByUrl(`/budget`)
+  }
+  navigateToGroups(){
+    this.router.navigateByUrl(`/groups`)
   }
 }

@@ -8,6 +8,23 @@ import { modifyProduct, calculateBudget, calculateGroup } from '../actions/produ
 
 @Injectable()
 export class ProductsEffects {
+  loadProviderId$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProductsActions.loadProviderId),
+      mergeMap(() =>
+        this.productService.getProviderId().pipe(
+          map((providerId) => {
+            console.log({providerId});
+            return ProductsActions.loadProviderIdSuccess({ providerId:providerId.providerId })
+          }),
+          catchError((error) => {
+            return of(ProductsActions.loadProductsFailed({error}))
+          })
+        )
+      )
+    )
+  )
+
   loadTodos$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductsActions.loadProducts),

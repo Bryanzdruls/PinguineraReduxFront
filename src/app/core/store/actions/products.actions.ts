@@ -6,6 +6,10 @@ import { IProductEntityListResponseModel } from "../../models/product/multiplePr
 import { IBudgetRequest, IBudgetResponse } from "../../models/product/productBudget.model";
 import { GroupRequest, GroupResponse } from '../../models/product/group.model';
 
+export const loadProviderId = createAction('[Products] Load Provider');
+export const loadProviderIdSuccess = createAction('[Products] Load Provider Success', props<{ providerId: string }>());
+export const loadProviderIdFailed = createAction('[Products] Load Provider Failed', props<{ error: string }>());
+
 export const loadProducts = createAction('[Products] Load Products');
 export const loadProductsSuccess = createAction('[Products] Load Products Success', props<{ products: ProductStoreModel[] }>());
 export const loadProductsFailed = createAction('[Products] Load Products Failed', props<{ error: string }>());

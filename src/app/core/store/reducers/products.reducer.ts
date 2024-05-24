@@ -34,6 +34,9 @@ export const initialState: ProductsState = {
 
 export const productReducer = createReducer(
   initialState,
+  on(ProductActions.loadProviderId, state => ({ ...state})),
+  on(ProductActions.loadProviderIdSuccess, (state, action) => ({ ...state, providerId: action.providerId })),
+
   on(ProductActions.loadProducts, state => ({ ...state})),
   on(ProductActions.loadProductsSuccess, (state, action) => ({ ...state, products: action.products })),
 

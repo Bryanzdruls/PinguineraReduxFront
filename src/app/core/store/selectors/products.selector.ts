@@ -4,6 +4,11 @@ import { ProductsState } from "../reducers/products.reducer";
 
 export const selectProductsState = (state: AppState) => state.products;
 
+export const selectProviderId = createSelector(
+  selectProductsState,
+  (state: ProductsState) => state.providerId
+)
+
 export const selectProducts = createSelector(
   selectProductsState,
   (state: ProductsState) => state.products

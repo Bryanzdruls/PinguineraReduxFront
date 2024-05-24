@@ -11,6 +11,14 @@ import { GroupResponse } from "../models/product/group.model";
   providedIn: 'root'
 })
 export class ApiToProductMapper {
+  mapProvider(payload):{providerId:string}{
+    console.log(payload);
+
+    return {
+      providerId: payload
+    }
+  }
+
   map(payload: any): IProductModelResponse {
     return {
       providerId: payload.providerId,

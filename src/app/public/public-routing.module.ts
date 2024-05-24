@@ -6,6 +6,7 @@ import { ProductContainerComponent } from '../containers/product-container/produ
 import { ProductsContainerComponent } from '../containers/products-container/products-container.component';
 import { BudgetContainerComponent } from '../containers/budget-container/budget-container.component';
 import { GroupContainerComponent } from '../containers/group-container/group-container.component';
+import { FooterContainerComponent } from '../containers/footer-container/footer-container.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,11 @@ const routes: Routes = [
       path: '',
       component: HeaderContainerComponent,
       outlet:'header'
+    },
+    {
+      path: '',
+      component: FooterContainerComponent,
+      outlet:'footer'
     },
     {
       path:'product',

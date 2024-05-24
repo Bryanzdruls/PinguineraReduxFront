@@ -14,6 +14,7 @@ import { GroupResponse } from '../../core/models/product/group.model';
   styles: ``
 })
 export class GroupContainerComponent {
+  public providerId$: Observable<string>;
   public products$: Observable<ProductStoreModel[]>;
   public groupResponse$: Observable<GroupResponse>;
 
@@ -26,12 +27,13 @@ export class GroupContainerComponent {
   }
 
   ngOnInit(): void {
+    this.facade.getProviderId();
     this.facade.getProducts();
     this.initializeSubscriptions();
   }
 
-
   private initializeSubscriptions(): void {
+    this.providerId$ = this.facade.providerId$();
     this.products$ = this.facade.products$();
     this.groupResponse$ = this.facade.groupResponse$();
   }
