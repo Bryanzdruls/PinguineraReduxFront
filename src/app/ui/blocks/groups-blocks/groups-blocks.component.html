@@ -5,11 +5,8 @@
       @for (item of groupResponse.generalGroup; track $index) {
         <h1>Group {{$index+1}}</h1>
         @for (product of item.copies; track $index) {
-          <div class="containerprice__card">
             <h2 class="container__index">{{$index+1}}</h2>
-            <app-multipleprice-response-element class="containerprice__inner" [item]="product" />
-
-          </div>
+            <app-multipleprice-response-element class="containerprice__inner" [item]="product"></app-multipleprice-response-element>
         }
         <h1 class="containerprice__title">Precio: {{item.pricePerGroup}} </h1>
         <h1 class="containerprice__title">Descuento Mayor: {{item.discountMayorPerGroup}} </h1>
@@ -21,34 +18,36 @@
       <h1 class="containerprice__title">Descuento total customer: {{groupResponse.discountCustomerTotal}} </h1>
       <h1 class="containerprice__title">Incremento total: {{groupResponse.incrementTotal}} </h1>
     </div>
+  }
+  <div class="principal__title">
+    <h3 class="groups__title">Productos Disponibles</h3>
+  </div>
+  <div class="groups__container">
+    @for (product of products; track $index) {
+      <div class="groups__div">
+        <app-product-item-element class="groups__item" [product]="product"></app-product-item-element>
+      </div>
     }
-  <h3 class="groups__title">Productos Disponibles</h3>
-  <div class="groups__container">
-  @for (product of products; track $index) {
-    <div class="groups__div">
-      <app-product-item-element class="groups__item" [product]="product" />
-      <button class="groups__button"
-        [disabled]="estaDeshabilitado(product)"
-        (click)="seleccionarElemento(product)">
-        Añadir a agrupacion
-        </button>
-    </div>
-  }
   </div>
-  <h3 class="groups__title">Elementos Seleccionados para Agrupación</h3>
-  <div class="groups__container">
-  @for (seleccionado of seleccionados; track $index) {
-    <div class="groups__div">
-      <app-product-item-element [product]="seleccionado" />
-    </div>
-  }
+  <div class="button__container">
+    <button class="groups__button" (click)="agregarAgrupacion()" [disabled]="!hasStockProducts()">Añadir Nueva Agrupación</button>
+    <button class="groups__button" (click)="enviarAgrupaciones()" [disabled]="agrupaciones.length === 0">Enviar Agrupaciones</button>
   </div>
-  <button class="groups__button" (click)="agregarAgrupacion()" [disabled]="seleccionados.length === 0">Añadir Nueva Agrupación</button>
+  <div class="groups__container">
+    @for (seleccionado of seleccionados; track $index) {
+      <div class="groups__div">
+        <app-product-item-element [product]="seleccionado"></app-product-item-element>
+      </div>
+    }
+  </div>
+  <div class="principal__title">
+    <h3 class="groups__title">Agrupaciones</h3>
+  </div>
 
-  <h3 class="groups__title">Agrupaciones</h3>
   @for (agrupacion of agrupaciones; track $index) {
-    <p>Grupo {{ $index + 1 }} Se ha añadido el grupo correctamente.</p>
+    <div class="group__confirmation">
+      <p >Grupo {{ $index + 1 }} Se ha añadido el grupo correctamente.</p>
+    </div>
   }
 
-  <button class="groups__button" (click)="enviarAgrupaciones()" [disabled]="agrupaciones.length === 0">Enviar Agrupaciones</button>
 </div>

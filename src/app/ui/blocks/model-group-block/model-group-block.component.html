@@ -1,0 +1,30 @@
+
+<div class="modal-overlay" ngIf="showModal">
+  <div class="modal-container">
+      <div class="modal-header">
+          <h2>Cotización</h2>
+          <button class="close-btn" (click)="closeModalTab()">&times;</button>
+      </div>
+      <div class="modal-body">
+        @for (item of groupResponse.generalGroup; track $index) {
+          <h3>Grupo {{ $index + 1 }}</h3>
+          @for (copy of item.copies; track $index) {
+            <div class="book-info">
+              <h4>{{ copy.title }}</h4>
+              <p>Autor: {{ copy.author }}</p>
+              <p>Cantidad: {{ copy.stock }}</p>
+          </div>
+          <p class="total-price">Precio total: {{groupResponse.priceTotal}} </p>
+
+          <div class="group-totals">
+            <h1 class="containerprice__title">Descuento total Mayor: {{groupResponse.discountMayorTotal}} </h1>
+            <h1 class="containerprice__title">Descuento total customer: {{groupResponse.discountCustomerTotal}} </h1>
+            <h1 class="containerprice__title">Incremento total: {{groupResponse.incrementTotal}} </h1>
+          </div>
+          <hr>
+          }
+        }
+  </div>
+</div>
+
+

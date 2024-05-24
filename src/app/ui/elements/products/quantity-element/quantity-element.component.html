@@ -1,5 +1,9 @@
 <div class="product__modify_quantity">
-  <button  (click)="decreaseQuantity()">-</button>
+  <button class="quantity-btn decrease-btn" (click)="decreaseQuantity()">
+    <i class="fas fa-minus"></i>
+  </button>
   <p class="product__modify_quantity_element">Cantidad: {{product.stock}}</p>
-  <button (click)="increaseQuantity(max)">+</button>
+  <button class="quantity-btn increase-btn" (click)="increaseQuantity(max)">
+    <i class="fas fa-plus"></i>
+  </button>
 </div>

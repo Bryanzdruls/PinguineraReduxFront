@@ -1,17 +1,17 @@
-<div class="product__item">
+<div class="product__item card">
+  <div class="icon">
+    @if (product.type == "NOVEL") {
+      <img src="/assets/img/novela.png" height="50" alt="imagen de novela">
+    }@else if (product.type == "BOOK") {
+      <img src="/assets/img/libro.png" height="50" alt="imagen de libro">
+    }
+  </div>
+  <p class="product__name title">{{ product.title }}</p>
+  <p class="product__desc text">Precio base: ${{ product.finalPrice.toFixed(0) }}</p>
   @if (product.type == "NOVEL") {
-    <img src="/assets/img/novela.png" height="50" alt="imagen de novela">
+    <p class="product__desc text">Tipo: Novela</p>
   }@else if (product.type == "BOOK") {
-
-    <img src="/assets/img/libro.png" height="50" alt="imagen de libro">
-  }
-  <p class="product__name">{{product.title}}</p>
-
-  <p class="product__desc">Precio base: ${{product.finalPrice.toFixed(0)}}</p>
-  @if (product.type == "NOVEL") {
-    <p class="product__desc">Tipo: Novela</p>
-  }@else if (product.type == "BOOK") {
-    <p class="product__desc">Tipo: Libro</p>
+    <p class="product__desc text">Tipo: Libro</p>
   }
   <app-quantity-element [product]="product" [max]="undefined"/>
 </div>

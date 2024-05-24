@@ -19,6 +19,13 @@ export class GroupsBlocksComponent {
 
   @Output() eventEmmitter = new EventEmitter<GroupRequest>();
 
+  public showModal: boolean;
+
+
+  closeModalTab(): void {
+    this.showModal=false
+  }
+
   agrupaciones: { productsIdsQuantity: ProductsIDSQuantity[] }[] = [];
   seleccionados: ProductStoreModel[] = [];
 
@@ -29,17 +36,15 @@ export class GroupsBlocksComponent {
   }
 
   agregarAgrupacion() {
-    if (this.seleccionados.length > 0) {
-      this.agrupaciones.push({ productsIdsQuantity: [
-        ...this.seleccionados.map(product => ({
-          id: product.copyId,
-          quantity: product.stock
-        }))
-      ] });
-      this.seleccionados.forEach(prod => {
-        this.products = this.products.filter(p => p.copyId !== prod.copyId);
-      });
-      this.seleccionados = [];
+    const productosConStock = this.products.filter(product => product.stock > 0);
+    if (productosConStock.length > 0) {
+      this.agrupaciones.push({ productsIdsQuantity: productosConStock.map(product => ({
+        id: product.copyId,
+        quantity: product.stock
+      })) });
+
+      // Poner el stock de los productos añadidos en 0
+      productosConStock.forEach(product => product.stock = 0);
     }
   }
 
@@ -49,7 +54,6 @@ export class GroupsBlocksComponent {
     const mes = fechaActual.getMonth() + 1; // getMonth() devuelve un índice basado en 0, por lo que se suma 1
     const dia = fechaActual.getDate();
 
-    // Asegúrate de que el mes y el día sean de dos dígitos
     const mesFormateado = mes < 10 ? `0${mes}` : `${mes}`;
     const diaFormateado = dia < 10 ? `0${dia}` : `${dia}`;
 
@@ -57,9 +61,9 @@ export class GroupsBlocksComponent {
 
     const groupedEmit = {
       providerId: "beb6488e-c3a4-46e7-9172-1569d7196099",
-      generalGroup:this.agrupaciones,
+      generalGroup: this.agrupaciones,
       registrationDate: fechaFormateada
-    }
+    };
     this.eventEmmitter.emit(groupedEmit);
   }
 
@@ -85,5 +89,9 @@ export class GroupsBlocksComponent {
     if (this.seleccionados.includes(product) && product.stock > 0) {
       this.seleccionados = this.seleccionados.filter(p => p.copyId !== product.copyId);
     }
+  }
+
+  hasStockProducts(): boolean {
+    return this.products.some(product => product.stock > 0);
   }
 }
